@@ -27,7 +27,7 @@ function MessageList({ messages }: MessageListProps) {
           <Message
             key={message.id}
             text={message.text}
-            sender={message.sender}
+            sender={message.senderId}
             timestamp={message.timestamp}
             isOwnMessage={message.isOwnMessage}
           />

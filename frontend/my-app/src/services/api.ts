@@ -36,7 +36,7 @@ function convertToMessage(rawMessage: any): MessageType {
   return {
     id: rawMessage.id,
     text: rawMessage.text,
-    sender: rawMessage.sender,
+    senderId: rawMessage.sender,
     timestamp: new Date(rawMessage.timestamp),
     isOwnMessage: rawMessage.isOwnMessage,
   };

@@ -1,7 +1,7 @@
 export interface MessageType {
   id: string;
   text: string;
-  sender: string;
+  senderId: string;
   timestamp: Date;
   isOwnMessage: boolean;
 }
