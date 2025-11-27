@@ -3,9 +3,10 @@ import type { KeyboardEvent } from 'react';
 
 interface MessageInputProps {
   onSendMessage: (text: string) => void;
+  disabled?: boolean;
 }
 
-function MessageInput({ onSendMessage }: MessageInputProps) {
+function MessageInput({ onSendMessage, disabled = false }: MessageInputProps) {
   const [message, setMessage] = useState('');
 
   const handleSend = () => {
@@ -31,9 +32,10 @@ function MessageInput({ onSendMessage }: MessageInputProps) {
         onKeyPress={handleKeyPress}
         placeholder="Type a message..."
         className="message-input-field"
+        disabled={disabled}
       />
-      <button onClick={handleSend} className="send-button">
-        Send
+      <button onClick={handleSend} className="send-button" disabled={disabled}>
+        {disabled ? 'Sending...' : 'Send'}
       </button>
     </div>
   );

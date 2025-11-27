@@ -6,7 +6,7 @@ interface ChatListProps {
 }
 
 function ChatList({ chats, onSelectChat }: ChatListProps) {
-  const formatTime = (date: Date) => {
+  const formatTime = (date:  Date) => {
     const now = new Date();
     const diffInHours = (now.getTime() - date.getTime()) / (1000 * 60 * 60);
 
