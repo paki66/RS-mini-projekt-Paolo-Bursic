@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8edebc30-b7c0-4785-91ca-6d7f64a1784f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/my-app/src/components/Message.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/my-app/src/components/MessageInput.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/my-app/src/components/MessageList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/my-app/src/types/MessageType.ts" afterDir="false" />
+    <list default="true" id="8edebc30-b7c0-4785-91ca-6d7f64a1784f" name="Changes" comment="RS-frontend-kreiran UI s loginom, chat listom i chat-om">
+      <change afterPath="$PROJECT_DIR$/API_SPEC.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/placa/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/placa/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/my-app/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/my-app/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/components/ChatList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/components/ChatList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/components/MessageInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/components/MessageInput.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,12 +48,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "FastAPI.Placa.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "frontend",
-    "last_opened_file_path": "/home/paolo/PycharmProjects/RS-mini-projekt-Paolo-Bursic",
+    "last_opened_file_path": "/home/paolo/PycharmProjects/RS-mini-projekt-Paolo-Bursic/backend/placa/main.py",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "/home/paolo/PycharmProjects/RS-mini-projekt-Paolo-Bursic/frontend/my-app/node_modules/typescript/lib",
@@ -84,6 +86,23 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Placa" type="Python.FastAPI">
+      <option name="appName" value="placa" />
+      <option name="file" value="$PROJECT_DIR$/backend/placa/main.py" />
+      <module name="RS-mini-projekt-Paolo-Bursic" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/RS-mini-projekt-Paolo-Bursic/bin/python" />
+      <option name="SDK_NAME" value="RS-mini-projekt-Paolo-Bursic" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <module name="RS-mini-projekt-Paolo-Bursic" />
       <option name="ENV_FILES" value="" />
@@ -112,11 +131,28 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763791379634</updated>
-      <workItem from="1764263813572" duration="1068000" />
+      <workItem from="1764263813572" duration="4568000" />
     </task>
+    <task id="LOCAL-00001" summary="RS-frontend-kreiran UI s loginom, chat listom i chat-om">
+      <option name="closed" value="true" />
+      <created>1764265008859</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1764265008859</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="RS-frontend-kreiran UI s loginom, chat listom i chat-om" />
+    <option name="LAST_COMMIT_MESSAGE" value="RS-frontend-kreiran UI s loginom, chat listom i chat-om" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/RS_mini_projekt_Paolo_Bursic$main.coverage" NAME="main Coverage Results" MODIFIED="1764266014771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/placa" />
+    <SUITE FILE_PATH="coverage/RS_mini_projekt_Paolo_Bursic$Placa.coverage" NAME="Placa Coverage Results" MODIFIED="1764266558457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
