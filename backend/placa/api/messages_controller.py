@@ -26,8 +26,9 @@ async def send_message(chatId: str, request: SendMessageRequest):
         "id": f"msg_{uuid.uuid4().hex[:8]}",
         "text": request.text,
         "sender": sender_username,
+        "senderId": request.senderId,
         "timestamp": datetime.now(),
-        "isOwnMessage": True
+        "isOwnMessage": False
     }
 
     if chatId not in messages_db:

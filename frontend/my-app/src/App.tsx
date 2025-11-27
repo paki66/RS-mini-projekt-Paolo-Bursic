@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import ChatList from './components/ChatList';
 import MessageList from './components/MessageList';
@@ -6,6 +6,7 @@ import MessageInput from './components/MessageInput';
 import type { MessageType } from './types/MessageType';
 import type { Chat } from './types/Chat';
 import { apiService } from './services/api';
+import { websocketService } from './services/websocket';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -20,6 +21,8 @@ function App() {
   const [isLoadingMessages, setIsLoadingMessages] = useState(false);
   const [isSendingMessage, setIsSendingMessage] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [wsConnected, setWsConnected] = useState(false);
+  const [typingUsers, setTypingUsers] = useState<Set<string>>(new Set());
 
   // Handle login
   const handleSetUsername = async () => {
@@ -33,7 +36,7 @@ function App() {
 
       if (response.success) {
         setUserId(response.userId);
-        // After successful login, fetch user's chats
+        websocketService.connect(response.userId);
         await fetchChats(response.userId);
       } else {
         setError(response.message || 'Login failed');
@@ -74,10 +77,11 @@ function App() {
     setError(null);
 
     try {
-      const response = await apiService.getChatDetails(chatId);
+      const response = await apiService.getChatDetails(chatId, userId || undefined);
 
       if (response.success) {
         setMessages(response.messages);
+        websocketService.subscribeToChat(chatId);
       } else {
         setError('Failed to load messages');
       }
@@ -91,6 +95,9 @@ function App() {
 
   // Handle back to chats
   const handleBackToChats = () => {
+    if (selectedChatId) {
+      websocketService.unsubscribeFromChat(selectedChatId);
+    }
     setSelectedChatId(null);
     setMessages([]);
   };
@@ -110,8 +117,11 @@ function App() {
       );
 
       if (response.success) {
-        // Add the new message to the list
-        setMessages([...messages, response.message]);
+        const messageWithCorrectOwnership: MessageType = {
+          ...response.message,
+          isOwnMessage: true,
+        };
+        setMessages([...messages, messageWithCorrectOwnership]);
       } else {
         setError('Failed to send message');
       }
@@ -128,6 +138,85 @@ function App() {
     const chat = chats.find(c => c.id === selectedChatId);
     return chat?.name || 'Chat';
   };
+
+  useEffect(() => {
+    const unsubscribeMessage = websocketService.onMessage((data) => {
+      if (data.chatId === selectedChatId) {
+        const newMessage: MessageType = {
+          ...data.message,
+          timestamp: new Date(data.message.timestamp),
+          isOwnMessage: data.message.senderId === userId,
+        };
+        setMessages((prev) => [...prev, newMessage]);
+      }
+    });
+
+    const unsubscribeChatUpdate = websocketService.onChatUpdate((data) => {
+      setChats((prev) =>
+        prev.map((chat) =>
+          chat.id === data.chatId
+            ? {
+                ...chat,
+                lastMessage: data.lastMessage,
+                lastMessageTime: new Date(data.lastMessageTime),
+                unreadCount: data.unreadCount ?? chat.unreadCount,
+              }
+            : chat
+        )
+      );
+    });
+
+    const unsubscribeError = websocketService.onError((error, details) => {
+      console.error('WebSocket error:', error, details);
+      setError(`Connection error: ${error}`);
+    });
+
+    const unsubscribeConnect = websocketService.onConnect(() => {
+      setWsConnected(true);
+      console.log('WebSocket connected');
+    });
+
+    const unsubscribeDisconnect = websocketService.onDisconnect(() => {
+      setWsConnected(false);
+      console.log('WebSocket disconnected');
+    });
+
+    const unsubscribeTyping = websocketService.onTyping((data) => {
+      if (data.chatId === selectedChatId && data.userId !== userId) {
+        if (data.isTyping) {
+          setTypingUsers((prev) => new Set(prev).add(data.username));
+          setTimeout(() => {
+            setTypingUsers((prev) => {
+              const newSet = new Set(prev);
+              newSet.delete(data.username);
+              return newSet;
+            });
+          }, 3000);
+        } else {
+          setTypingUsers((prev) => {
+            const newSet = new Set(prev);
+            newSet.delete(data.username);
+            return newSet;
+          });
+        }
+      }
+    });
+
+    return () => {
+      unsubscribeMessage();
+      unsubscribeChatUpdate();
+      unsubscribeError();
+      unsubscribeConnect();
+      unsubscribeDisconnect();
+      unsubscribeTyping();
+    };
+  }, [selectedChatId, userId]);
+
+  useEffect(() => {
+    return () => {
+      websocketService.disconnect();
+    };
+  }, []);
 
   // Login screen
   if (!userId) {
@@ -181,9 +270,19 @@ function App() {
         <button onClick={handleBackToChats} className="back-button">
           ← Back
         </button>
-        <h2>{getSelectedChatName()}</h2>
+        <h2>
+          {getSelectedChatName()}
+          <span className={`connection-status ${wsConnected ? 'connected' : 'disconnected'}`}>
+            {wsConnected ? '●' : '○'}
+          </span>
+        </h2>
         <span className="username-display">Logged in as: {username}</span>
       </div>
+      {typingUsers.size > 0 && (
+        <div className="typing-indicator">
+          {Array.from(typingUsers).join(', ')} {typingUsers.size === 1 ? 'is' : 'are'} typing...
+        </div>
+      )}
       {error && <div className="error-banner">{error}</div>}
       {isLoadingMessages ? (
         <div className="loading-container">
@@ -195,6 +294,11 @@ function App() {
           <MessageInput
             onSendMessage={handleSendMessage}
             disabled={isSendingMessage}
+            onTyping={(isTyping) => {
+              if (selectedChatId) {
+                websocketService.sendTypingIndicator(selectedChatId, isTyping);
+              }
+            }}
           />
         </>
       )}

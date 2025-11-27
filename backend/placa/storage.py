@@ -33,6 +33,7 @@ messages_db = {
             "id": "msg_1_1",
             "text": "Welcome to the general chat!",
             "sender": "admin",
+            "senderId": "admin_id",
             "timestamp": datetime.now() - timedelta(hours=1),
             "isOwnMessage": False
         },
@@ -40,6 +41,7 @@ messages_db = {
             "id": "msg_1_2",
             "text": "Thanks! Happy to be here.",
             "sender": "alice",
+            "senderId": "alice_id",
             "timestamp": datetime.now() - timedelta(minutes=50),
             "isOwnMessage": False
         },
@@ -47,6 +49,7 @@ messages_db = {
             "id": "msg_1_3",
             "text": "Hello everyone!",
             "sender": "bob",
+            "senderId": "bob_id",
             "timestamp": datetime.now() - timedelta(minutes=5),
             "isOwnMessage": False
         }
@@ -56,6 +59,7 @@ messages_db = {
             "id": "msg_2_1",
             "text": "Anyone working on React projects?",
             "sender": "charlie",
+            "senderId": "charlie_id",
             "timestamp": datetime.now() - timedelta(minutes=30),
             "isOwnMessage": False
         },
@@ -63,6 +67,7 @@ messages_db = {
             "id": "msg_2_2",
             "text": "I am! Building a chat app.",
             "sender": "dave",
+            "senderId": "dave_id",
             "timestamp": datetime.now() - timedelta(minutes=25),
             "isOwnMessage": False
         }
@@ -72,6 +77,7 @@ messages_db = {
             "id": "msg_3_1",
             "text": "Happy coding!",
             "sender": "eve",
+            "senderId": "eve_id",
             "timestamp": datetime.now() - timedelta(hours=2),
             "isOwnMessage": False
         }

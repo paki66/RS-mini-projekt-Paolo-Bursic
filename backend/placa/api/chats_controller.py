@@ -22,15 +22,18 @@ async def get_chats(userId: str):
 
 
 @router.get("/chats/{chatId}", response_model=ChatDetailsResponse)
-async def get_chat_details(chatId: str):
+async def get_chat_details(chatId: str, userId: str = None):
     if chatId not in chats_db:
         raise HTTPException(status_code=404, detail="Chat not found")
 
     chat = Chat(**chats_db[chatId])
     messages = messages_db.get(chatId, [])
 
-    # Convert messages to Message objects
-    message_objects = [Message(**msg) for msg in messages]
+    message_objects = []
+    for msg in messages:
+        msg_copy = msg.copy()
+        msg_copy["isOwnMessage"] = userId and msg.get("senderId") == userId
+        message_objects.append(Message(**msg_copy))
 
     return ChatDetailsResponse(
         success=True,
