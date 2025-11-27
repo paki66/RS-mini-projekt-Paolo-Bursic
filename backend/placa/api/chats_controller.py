@@ -8,10 +8,6 @@ router = APIRouter()
 
 @router.get("/chats", response_model=ChatsResponse)
 async def get_chats(userId: str):
-    """
-    Get all chats for a user.
-    In this implementation, returns all available chats.
-    """
     if not userId:
         raise HTTPException(status_code=400, detail="userId is required")
 
@@ -27,9 +23,6 @@ async def get_chats(userId: str):
 
 @router.get("/chats/{chatId}", response_model=ChatDetailsResponse)
 async def get_chat_details(chatId: str):
-    """
-    Get detailed information about a specific chat including all messages.
-    """
     if chatId not in chats_db:
         raise HTTPException(status_code=404, detail="Chat not found")
 

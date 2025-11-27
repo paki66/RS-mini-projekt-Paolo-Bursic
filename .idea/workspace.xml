@@ -4,11 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8edebc30-b7c0-4785-91ca-6d7f64a1784f" name="Changes" comment="RS-backend-struktura rasporedena" />
+    <list default="true" id="8edebc30-b7c0-4785-91ca-6d7f64a1784f" name="Changes" comment="RS-main updateani dependenciji">
+      <change afterPath="$PROJECT_DIR$/backend/WEBSOCKET_IMPLEMENTATION.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/placa/api/ws_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/placa/config/real_time/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/placa/config/real_time/ws_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/placa/model/notification.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/placa/service/ws_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/placa/api/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/placa/api/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/placa/api/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/placa/api/auth_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/placa/api/chats.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/placa/api/chats_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/placa/api/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/placa/api/messages_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/placa/config/cors.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/placa/config/cors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/placa/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/placa/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/placa/model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/placa/model/__init__.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -54,6 +76,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/placa/config" />
+      <recent name="$PROJECT_DIR$/backend/placa/real-time" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="RS-mini-projekt-Paolo-Bursic" />
@@ -123,7 +151,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763791379634</updated>
-      <workItem from="1764263813572" duration="5083000" />
+      <workItem from="1764263813572" duration="12665000" />
     </task>
     <task id="LOCAL-00001" summary="RS-frontend-kreiran UI s loginom, chat listom i chat-om">
       <option name="closed" value="true" />
@@ -157,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764270771127</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="RS-main updateani dependenciji">
+      <option name="closed" value="true" />
+      <created>1764271402360</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1764271402360</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,10 +216,11 @@
     <MESSAGE value="RS-API- specifikacija API-ja napisana" />
     <MESSAGE value="RS-backend-struktura rasporedena" />
     <MESSAGE value="RS-backend-struktura rasporedena" />
-    <option name="LAST_COMMIT_MESSAGE" value="RS-backend-struktura rasporedena" />
+    <MESSAGE value="RS-main updateani dependenciji" />
+    <option name="LAST_COMMIT_MESSAGE" value="RS-main updateani dependenciji" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RS_mini_projekt_Paolo_Bursic$main.coverage" NAME="main Coverage Results" MODIFIED="1764266014771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/placa" />
-    <SUITE FILE_PATH="coverage/RS_mini_projekt_Paolo_Bursic$Placa.coverage" NAME="Placa Coverage Results" MODIFIED="1764266558457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/RS_mini_projekt_Paolo_Bursic$Placa.coverage" NAME="Placa Coverage Results" MODIFIED="1764279176322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

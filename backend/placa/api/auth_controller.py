@@ -8,10 +8,6 @@ router = APIRouter()
 
 @router.post("/login", response_model=LoginResponse)
 async def login(request: LoginRequest):
-    """
-    Authenticate a user with just a username.
-    Returns userId and username on success.
-    """
     if not request.username or len(request.username.strip()) == 0:
         raise HTTPException(status_code=400, detail="Username is required")
 
