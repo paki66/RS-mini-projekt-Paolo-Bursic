@@ -294,6 +294,205 @@ curl -X POST http://localhost:8000/api/chats/chat_1/messages \
 
 ---
 
+### 5. WebSocket Connection
+
+Real-time bidirectional communication for instant message delivery and typing indicators.
+
+**Endpoint:** `/ws`
+**Protocol:** WebSocket
+**Authentication:** Required (userId query parameter)
+
+#### Connection URL
+```
+ws://localhost:8000/api/ws?userId={userId}
+```
+
+#### Query Parameters
+- `userId` (required): The unique identifier of the user
+
+#### Connection Flow
+
+1. Client connects with userId query parameter
+2. Server accepts connection and sends acknowledgment
+3. Client subscribes to chats
+4. Client and server exchange messages bidirectionally
+5. Client disconnects or connection is closed
+
+#### Client to Server Messages
+
+##### Subscribe to Chat
+```json
+{
+  "action": "subscribe",
+  "chatId": "string"
+}
+```
+
+**Response:**
+```json
+{
+  "type": "subscription_confirmed",
+  "action": "subscribe",
+  "chatId": "string",
+  "message": "Subscribed to chat {chatId}"
+}
+```
+
+##### Unsubscribe from Chat
+```json
+{
+  "action": "unsubscribe",
+  "chatId": "string"
+}
+```
+
+**Response:**
+```json
+{
+  "type": "subscription_confirmed",
+  "action": "unsubscribe",
+  "chatId": "string",
+  "message": "Unsubscribed from chat {chatId}"
+}
+```
+
+##### Typing Indicator
+```json
+{
+  "type": "typing",
+  "chatId": "string",
+  "isTyping": true
+}
+```
+
+#### Server to Client Messages
+
+##### Connection Acknowledgment
+Sent immediately after successful connection.
+
+```json
+{
+  "type": "connected",
+  "userId": "string",
+  "message": "Successfully connected to WebSocket",
+  "timestamp": "2025-11-27T10:00:00.000Z"
+}
+```
+
+##### New Message Notification
+Sent when a new message is posted to a subscribed chat.
+
+```json
+{
+  "type": "new_message",
+  "chatId": "string",
+  "message": {
+    "id": "string",
+    "text": "string",
+    "sender": "string",
+    "timestamp": "2025-11-27T10:00:00.000Z",
+    "isOwnMessage": false
+  },
+  "timestamp": "2025-11-27T10:00:00.000Z"
+}
+```
+
+##### Chat Update Notification
+Sent when chat metadata is updated.
+
+```json
+{
+  "type": "chat_update",
+  "chatId": "string",
+  "lastMessage": "string",
+  "lastMessageTime": "2025-11-27T10:00:00.000Z",
+  "unreadCount": 0,
+  "timestamp": "2025-11-27T10:00:00.000Z"
+}
+```
+
+##### User Typing Notification
+Sent when another user is typing in a subscribed chat.
+
+```json
+{
+  "type": "user_typing",
+  "chatId": "string",
+  "userId": "string",
+  "username": "string",
+  "isTyping": true,
+  "timestamp": "2025-11-27T10:00:00.000Z"
+}
+```
+
+##### Error Message
+Sent when an error occurs.
+
+```json
+{
+  "type": "error",
+  "error": "string",
+  "details": "string",
+  "timestamp": "2025-11-27T10:00:00.000Z"
+}
+```
+
+#### Example Usage (JavaScript)
+
+```javascript
+const userId = 'user_123456';
+const ws = new WebSocket(`ws://localhost:8000/api/ws?userId=${userId}`);
+
+ws.onopen = () => {
+  console.log('Connected to WebSocket');
+
+  ws.send(JSON.stringify({
+    action: 'subscribe',
+    chatId: 'chat_1'
+  }));
+};
+
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+
+  switch(data.type) {
+    case 'connected':
+      console.log('Connection acknowledged');
+      break;
+
+    case 'new_message':
+      console.log('New message:', data.message);
+      break;
+
+    case 'chat_update':
+      console.log('Chat updated:', data);
+      break;
+
+    case 'user_typing':
+      console.log(`${data.username} is typing`);
+      break;
+
+    case 'error':
+      console.error('Error:', data.error);
+      break;
+  }
+};
+
+ws.onclose = () => {
+  console.log('Disconnected from WebSocket');
+};
+
+function sendTypingIndicator(chatId, isTyping) {
+  ws.send(JSON.stringify({
+    type: 'typing',
+    chatId: chatId,
+    isTyping: isTyping
+  }));
+}
+```
+
+---
+
 ## Data Models
 
 ### User
@@ -354,12 +553,16 @@ All error responses follow this format:
 1. **Timestamps**: All timestamps should be in ISO 8601 format (e.g., `2025-11-27T10:30:00Z`)
 2. **Authentication**: Currently using userId for authentication. In production, implement proper JWT or session-based authentication.
 3. **CORS**: Backend should allow CORS from frontend origin (e.g., `http://localhost:5173`)
-4. **WebSocket** (Future): Consider WebSocket implementation for real-time message delivery
+4. **WebSocket**: WebSocket is implemented for real-time message delivery, chat updates, and typing indicators
 5. **Pagination** (Future): Add pagination for messages list when chat history grows large
+6. **WebSocket Reconnection**: Frontend should implement automatic reconnection logic for WebSocket connections
+7. **Message Delivery**: Messages sent via REST API are automatically broadcasted to all subscribed users via WebSocket
 
 ---
 
 ## Example Integration (Frontend)
+
+### REST API Examples
 
 ```typescript
 // Login
@@ -390,4 +593,103 @@ const sendMessageResponse = await fetch(
     body: JSON.stringify({ text: 'Hello!', senderId: userId })
   }
 );
+```
+
+### WebSocket Integration Example
+
+```typescript
+class ChatWebSocket {
+  private ws: WebSocket | null = null;
+  private userId: string;
+  private reconnectAttempts = 0;
+  private maxReconnectAttempts = 5;
+
+  constructor(userId: string) {
+    this.userId = userId;
+    this.connect();
+  }
+
+  connect() {
+    this.ws = new WebSocket(`ws://localhost:8000/api/ws?userId=${this.userId}`);
+
+    this.ws.onopen = () => {
+      console.log('WebSocket connected');
+      this.reconnectAttempts = 0;
+    };
+
+    this.ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      this.handleMessage(data);
+    };
+
+    this.ws.onclose = () => {
+      console.log('WebSocket disconnected');
+      this.handleReconnect();
+    };
+
+    this.ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
+  }
+
+  handleMessage(data: any) {
+    switch(data.type) {
+      case 'connected':
+        console.log('Connected:', data.message);
+        break;
+      case 'new_message':
+        this.onNewMessage(data);
+        break;
+      case 'chat_update':
+        this.onChatUpdate(data);
+        break;
+      case 'user_typing':
+        this.onUserTyping(data);
+        break;
+      case 'error':
+        console.error('Server error:', data.error);
+        break;
+    }
+  }
+
+  subscribeToChat(chatId: string) {
+    this.send({ action: 'subscribe', chatId });
+  }
+
+  unsubscribeFromChat(chatId: string) {
+    this.send({ action: 'unsubscribe', chatId });
+  }
+
+  sendTypingIndicator(chatId: string, isTyping: boolean) {
+    this.send({ type: 'typing', chatId, isTyping });
+  }
+
+  send(data: any) {
+    if (this.ws?.readyState === WebSocket.OPEN) {
+      this.ws.send(JSON.stringify(data));
+    }
+  }
+
+  handleReconnect() {
+    if (this.reconnectAttempts < this.maxReconnectAttempts) {
+      this.reconnectAttempts++;
+      const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), 10000);
+      setTimeout(() => this.connect(), delay);
+    }
+  }
+
+  disconnect() {
+    this.ws?.close();
+  }
+
+  onNewMessage(data: any) {}
+  onChatUpdate(data: any) {}
+  onUserTyping(data: any) {}
+}
+
+const chatWs = new ChatWebSocket('user_123456');
+chatWs.subscribeToChat('chat_1');
+chatWs.onNewMessage = (data) => {
+  console.log('New message received:', data.message);
+};
 ```
