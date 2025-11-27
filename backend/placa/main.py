@@ -5,8 +5,8 @@ from .api import auth_router, chats_router, messages_router, websocket_router
 import os
 
 placa = FastAPI(
-    title="Chat API",
-    description="A simple chat application API with real_time notifications",
+    title="Placa",
+    description="Na pravemu mistu u pravo vrime (real-time).",
     version="1.0.0"
 )
 
