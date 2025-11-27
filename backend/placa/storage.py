@@ -9,7 +9,7 @@ chats_db = {
         "name": "General",
         "lastMessage": "Welcome to the general chat!",
         "lastMessageTime": datetime.now() - timedelta(minutes=5),
-        "unreadCount": 2
+        "unreadCount": 0
     },
     "chat_2": {
         "id": "chat_2",
@@ -23,7 +23,7 @@ chats_db = {
         "name": "Random",
         "lastMessage": "Happy coding!",
         "lastMessageTime": datetime.now() - timedelta(hours=2),
-        "unreadCount": 5
+        "unreadCount": 0
     }
 }
 
