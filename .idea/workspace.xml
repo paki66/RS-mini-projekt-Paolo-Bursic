@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8edebc30-b7c0-4785-91ca-6d7f64a1784f" name="Changes" comment="RS-backend- prikaz poruka drugih korisnika na drugoj strani">
+    <list default="true" id="8edebc30-b7c0-4785-91ca-6d7f64a1784f" name="Changes" comment="RS-backend- promijenjen sender atribut u senderId klase MessageType.ts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/components/MessageList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/components/MessageList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/services/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/types/MessageType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/types/MessageType.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/placa/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/placa/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +139,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763791379634</updated>
-      <workItem from="1764263813572" duration="16348000" />
+      <workItem from="1764263813572" duration="17769000" />
     </task>
     <task id="LOCAL-00001" summary="RS-frontend-kreiran UI s loginom, chat listom i chat-om">
       <option name="closed" value="true" />
@@ -215,7 +213,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764282977563</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="RS-backend- promijenjen sender atribut u senderId klase MessageType.ts">
+      <option name="closed" value="true" />
+      <created>1764284464753</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1764284464753</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,10 +249,11 @@
     <MESSAGE value="RS-bckend-dodan uvicorn standard dependency" />
     <MESSAGE value="RS-bckend-nadopunjena API spec doc" />
     <MESSAGE value="RS-backend- prikaz poruka drugih korisnika na drugoj strani" />
-    <option name="LAST_COMMIT_MESSAGE" value="RS-backend- prikaz poruka drugih korisnika na drugoj strani" />
+    <MESSAGE value="RS-backend- promijenjen sender atribut u senderId klase MessageType.ts" />
+    <option name="LAST_COMMIT_MESSAGE" value="RS-backend- promijenjen sender atribut u senderId klase MessageType.ts" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RS_mini_projekt_Paolo_Bursic$main.coverage" NAME="main Coverage Results" MODIFIED="1764266014771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/placa" />
-    <SUITE FILE_PATH="coverage/RS_mini_projekt_Paolo_Bursic$Placa.coverage" NAME="Placa Coverage Results" MODIFIED="1764281096429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/RS_mini_projekt_Paolo_Bursic$Placa.coverage" NAME="Placa Coverage Results" MODIFIED="1764285541807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
