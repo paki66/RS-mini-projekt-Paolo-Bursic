@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8edebc30-b7c0-4785-91ca-6d7f64a1784f" name="Changes" comment="RS-frontend-kreiran UI s loginom, chat listom i chat-om">
-      <change afterPath="$PROJECT_DIR$/API_SPEC.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/placa/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/placa/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/components/ChatList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/components/ChatList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/components/MessageInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/components/MessageInput.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="8edebc30-b7c0-4785-91ca-6d7f64a1784f" name="Changes" comment="RS-backend-struktura rasporedena" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,7 +123,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763791379634</updated>
-      <workItem from="1764263813572" duration="4568000" />
+      <workItem from="1764263813572" duration="5083000" />
     </task>
     <task id="LOCAL-00001" summary="RS-frontend-kreiran UI s loginom, chat listom i chat-om">
       <option name="closed" value="true" />
@@ -141,15 +133,54 @@
       <option name="project" value="LOCAL" />
       <updated>1764265008859</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="RS-frontend-popravljen bug s datetime tipon podatka">
+      <option name="closed" value="true" />
+      <created>1764270697432</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1764270697432</updated>
+    </task>
+    <task id="LOCAL-00003" summary="RS-API- specifikacija API-ja napisana">
+      <option name="closed" value="true" />
+      <created>1764270733739</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764270733740</updated>
+    </task>
+    <task id="LOCAL-00004" summary="RS-backend struktura rasporedena">
+      <option name="closed" value="true" />
+      <created>1764270771127</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764270771127</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="RS-frontend-kreiran UI s loginom, chat listom i chat-om" />
-    <option name="LAST_COMMIT_MESSAGE" value="RS-frontend-kreiran UI s loginom, chat listom i chat-om" />
+    <MESSAGE value="RS-frontend-popravljen bug s datetime tipon podatka" />
+    <MESSAGE value="RS-API- specifikacija API-ja napisana" />
+    <MESSAGE value="RS-backend-struktura rasporedena" />
+    <MESSAGE value="RS-backend-struktura rasporedena" />
+    <option name="LAST_COMMIT_MESSAGE" value="RS-backend-struktura rasporedena" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RS_mini_projekt_Paolo_Bursic$main.coverage" NAME="main Coverage Results" MODIFIED="1764266014771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/placa" />
