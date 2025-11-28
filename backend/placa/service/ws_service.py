@@ -1,6 +1,6 @@
 from fastapi import WebSocket
 from typing import Dict, Any
-from backend.placa.config.real_time.ws_manager import manager
+from ..config.real_time.ws_manager import manager
 from ..model.notification import (
     ConnectionAcknowledgment,
     ErrorMessage,

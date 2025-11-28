@@ -1,7 +1,7 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Query
 from typing import Optional
 import json
-from backend.placa.config.real_time.ws_manager import manager
+from ..config.real_time.ws_manager import manager
 from ..service.ws_service import (
     send_connection_acknowledgment,
     send_error,
